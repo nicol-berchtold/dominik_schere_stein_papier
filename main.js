@@ -3,74 +3,111 @@
 function computerPlay() {
     let zufall = Math.floor(Math.random() * 3);
     let hand = ''
-    if(zufall === 0){
+    if (zufall === 0) {
         hand = "schere";
-    } else if ( zufall === 1){
+    } else if (zufall === 1) {
         hand = "stein";
     } else {
         hand = "papier";
     }
     return hand;
 }
-function playRound() {
+function init() {
+    let rock = document.getElementById('rock');
+    let paper = document.getElementById('paper');
+    let scissor = document.getElementById('scissor');
+    //let ausgabe = document.getElementById('ausgabe');
 
-    let playerSelection = '';
-    do {
-        //console.log("Falsche Eingabe")
-        playerSelection = prompt("Wähle stein, schere oder papier:").toLowerCase();
-    } while(!(playerSelection === 'stein') && !(playerSelection === 'schere') && !(playerSelection === 'papier')) 
-    
-    
+
+
+    rock.onclick = function () {
+        playRound('stein');
+        //ausgabe.innerHTML = "Sie haben Stein gewählt!";
+    }
+
+    paper.onclick = function () {
+        playRound('papier');
+        //ausgabe.innerHTML = "Sie haben Papier gewählt!";
+    }
+
+    scissor.onclick = function () {
+        playRound('schere');
+        //ausgabe.innerHTML = "Sie haben Schere gewählt!";
+    }
+
+}
+function playRound(pChoice) {
+    let ausgabe = document.getElementById('ausgabe')
+
+    const playerSelection = pChoice;
     const computerSelect = computerPlay();
-    let win = 0
-    if(playerSelection === "stein" && computerSelect === "schere") {
-        console.log("Spieler gewinnt");
-        win = 1;
+
+    if (playerSelection === "stein" && computerSelect === "schere") {
+        ausgabe.innerHTML = "Stein Schleift Schere! Stein gewinnt!";
+        countPoints(1);
     } else if (playerSelection === "stein" && computerSelect === "papier") {
-        console.log("Computer gewinnt");
-        win = 2;
+        ausgabe.innerHTML = "Papier umwickelt Stein! Papier gewinnt!";
+        countPoints(2);
     } else if (playerSelection === "stein" && computerSelect === "stein") {
-        console.log("Niemand gewinnt");
-        
+        ausgabe.innerHTML = "Es ist ein unentschieden!";
     } else if (playerSelection === "schere" && computerSelect === "papier") {
-        console.log("Spieler gewinnt");
-        win = 1;
+        ausgabe.innerHTML = "Schere schneiet Papier! Papier gewinnt!";
+        countPoints(1);
     } else if (playerSelection === "schere" && computerSelect === "stein") {
-        console.log("Computer gewinnt");
-        win = 2;
+        ausgabe.innerHTML = "Stein schleift Schere! Stein gewinnt!";
+        countPoints(2);
     } else if (playerSelection === "schere" && computerSelect === "schere") {
-        console.log("Niemand gewinnt");
-        
+        ausgabe.innerHTML = "Es ist ein unentschieden!";
     } else if (playerSelection === "papier" && computerSelect === "stein") {
-        console.log("Spieler gewinnt");
-        win = 1;
+        ausgabe.innerHTML = "Papier umwickelt Stein! Papier gewinnt!";
+        countPoints(1);
     } else if (playerSelection === "papier" && computerSelect === "schere") {
-        console.log("Computer gewinnt");
-        win = 2;
+        ausgabe.innerHTML = "Schere schneidet Papier! Schere gewinnt";
+        countPoints(2);
     } else if (playerSelection === "papier" && computerSelect === "papier") {
-        console.log("Niemand gewinnt");
+        ausgabe.innerHTML = "Es ist ein unentschieden!";
     }
- 
-    return(win)
+
+    return (countPoints)
 }
 
+let playerPunkte = 0;
+let computerPunkte = 0;
+let playerPunkteElement = document.getElementById('playerPunkte');
+let computerPunkteElement = document.getElementById('computerPunkte');
 
-function game() {
-    let player = 0;
-    let com = 0;
-    while (player < 3 && com < 3) {
-        const punkt = playRound(player);
-        if (punkt === 1) {
-            player += 1
-        } else if (punkt === 2) {
-            com += 1;
-        }
+function countPoints(punkt) {
+
+    let ausgabe = document.getElementById('ausgabe');
+
+    //const punkt = playRound(playerPunkte);
+    if (punkt === 1) {
+        playerPunkte += 1
+        playerPunkteElement.textContent = playerPunkte;
+        ausgabe.style.backgroundColor = "green";
+    } else if (punkt === 2) {
+        computerPunkte += 1;
+        computerPunkteElement.textContent = computerPunkte;
+        ausgabe.style.backgroundColor = "red";
     }
-    if (player === 3){
-        document.write("Der Spieler hat gewonnen");
-    } else if ( com === 3) {
-        document.write("Computer hat gewonnen");
+
+
+    if (playerPunkte >= 3) {
+        ausgabe.innerHTML = "Der Spieler hat gewonnen";
+        
+    } else if (computerPunkte >= 3) {
+        ausgabe.innerHTML = "Computer hat gewonnen";
+        
     }
 }
 
-game();
+let clear = document.getElementById('clear');
+
+clear.onclick = function clear() {
+    playerPunkte = 0;
+    playerPunkteElement.textContent = "";
+    computerPunkteElement.textContent = "";
+    computerPunkte = 0;
+    ausgabe.innerHTML = "";
+}
+init()

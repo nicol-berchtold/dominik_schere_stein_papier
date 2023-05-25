@@ -1,0 +1,100 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    background-color: pink;
+}
+
+.kopf {
+    background-color: blueviolet;
+    height: 80px;
+    width: auto;
+}
+
+.löschen {
+    margin-top: 30px;
+    margin-right: 20px;
+    float: right;
+    background-color: white;
+
+}
+
+.ueberschrift {
+    padding-left: 90px;
+    text-align: center;
+    color: white;
+    padding-top: 20px;
+}
+
+.content {
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 10px;
+    height: 150px;
+    width: 400px;
+    -webkit-box-shadow: -11px -11px 10px -7px rgba(0, 0, 0, 0.46);
+    -moz-box-shadow: -11px -11px 10px -7px rgba(0, 0, 0, 0.46);
+    box-shadow: -11px -11px 10px -7px rgba(0, 0, 0, 0.46);
+}
+
+.player {
+    padding-top: 20px;
+    height: 100px;
+}
+
+.computer {
+    padding-top: 20px;
+    height: 100px;
+}
+
+.content2 {
+    padding-top: 50px;
+    display: flex;
+    justify-content: space-around;
+
+    margin: auto;
+    width: 600px;
+    height: 200px;
+}
+
+.stein {
+    font-size: 60pt;
+    color: white;
+}
+
+.papier {
+    font-size: 60pt;
+    color: white;
+}
+
+.schere {
+    font-size: 60pt;
+    color: white;
+}
+
+.box2 {
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    padding-top: 50px;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 10px;
+    height: 200px;
+    width: 400px;
+    -webkit-box-shadow: -11px -11px 10px -7px rgba(0, 0, 0, 0.46);
+    -moz-box-shadow: -11px -11px 10px -7px rgba(0, 0, 0, 0.46);
+    box-shadow: -11px -11px 10px -7px rgba(0, 0, 0, 0.46);
+}
+
+.ausgabeFeld {
+
+    height: 40px;
+    font-weight: 5pt;
+    color: white;
+}
